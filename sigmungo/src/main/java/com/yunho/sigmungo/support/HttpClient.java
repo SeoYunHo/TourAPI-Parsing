@@ -7,7 +7,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
 
-import org.apache.xmlbeans.impl.xb.xmlconfig.ConfigDocument.Config;
 import org.json.JSONObject;
 
 public class HttpClient {
@@ -59,6 +58,31 @@ public class HttpClient {
 		this.targetAddress = config.getTargetAddress();
 		this.readTimeout = config.getReadTimeout();
 		this.connectTimeout = config.getConnectTimeout();
+	}
+	
+	public String getTargetAddress() {
+		return targetAddress;
+	}
+	public void setTargetAddress(String targetAddress, int port) {
+		if(targetAddress.endsWith("/")) {
+			targetAddress = targetAddress.substring(0, targetAddress.length() - 1);
+		}
+		
+		this.targetAddress = port == 80 ? targetAddress : targetAddress + ":" + port;
+	}
+	
+	public int getReadTimeout() {
+		return readTimeout;
+	}
+	public void setReadTimeout(int readTimeout) {
+		this.readTimeout = readTimeout;
+	}
+	
+	public int getConnectTimeout() {
+		return connectTimeout;
+	}
+	public void setConnectTimeout(int connectTimeout) {
+		this.connectTimeout = connectTimeout;
 	}
 	
 	public Response post(String uri, Map<String, Object> headers, Map<String, Object> params) {
