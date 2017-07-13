@@ -1,7 +1,5 @@
 package com.yunho.sigmungo.account;
 
-import java.sql.SQLException;
-
 import com.yunho.sigmungo.support.MySQL;
 
 import io.vertx.core.Handler;
